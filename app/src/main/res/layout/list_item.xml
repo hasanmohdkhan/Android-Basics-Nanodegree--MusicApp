@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/album_art"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="16dp"
+        android:src="@color/colorAccent"
+        android:contentDescription="@string/album_art_contain_description_str" />
+
+
+
+    <TextView
+        android:id="@+id/song_name"
+        android:textSize="20sp"
+         android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/album_art"
+        android:layout_marginStart="16dp"
+        tools:text="Shape of You"/>
+    <TextView
+        android:id="@+id/artist_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/song_name"
+        android:layout_toEndOf="@id/album_art"
+        tools:text="Ed shareen"/>
+
+    <TextView
+        android:id="@+id/album_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/artist_name"
+        android:layout_toEndOf="@id/album_art"
+        tools:text="Divide"/>
+</RelativeLayout>
