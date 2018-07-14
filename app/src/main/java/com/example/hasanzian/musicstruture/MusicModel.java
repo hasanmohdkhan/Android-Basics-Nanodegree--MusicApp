@@ -1,16 +1,27 @@
 package com.example.hasanzian.musicstruture;
 
+import java.io.InputStream;
+
 /**
  * Created by hasanZian on 12-07-2018.
  */
 
 public class MusicModel {
+    private long mID;
     private String mSongName;
     private String mArtist;
     private String mAlbum;
-    private byte[] mCover;
+    private InputStream mCover;
 
-    public MusicModel(String mSongName, String mArtist, String mAlbum, byte[] mCover) {
+    public MusicModel(long mID, String mSongName, String mArtist, String mAlbum, InputStream mCover) {
+        this.mID = mID;
+        this.mSongName = mSongName;
+        this.mArtist = mArtist;
+        this.mAlbum = mAlbum;
+        this.mCover = mCover;
+    }
+
+    public MusicModel(String mSongName, String mArtist, String mAlbum, InputStream mCover) {
         this.mSongName = mSongName;
         this.mArtist = mArtist;
         this.mAlbum = mAlbum;
@@ -35,7 +46,11 @@ public class MusicModel {
         return mAlbum;
     }
 
-    public byte[] getmCover() {
+    public InputStream getmCover() {
         return mCover;
+    }
+
+    public long getmID() {
+        return mID;
     }
 }

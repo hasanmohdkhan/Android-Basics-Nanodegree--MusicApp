@@ -3,6 +3,7 @@
     package="com.example.hasanzian.musicstruture">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +23,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".NowPlayingActivity"></activity>
+
+        <!--<service android:name="com.example.hasanzian.musicstruture." />-->
+
     </application>
 
 </manifest>

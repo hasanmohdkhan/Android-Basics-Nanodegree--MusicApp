@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 /**
@@ -39,14 +41,17 @@ public class Adaptor extends ArrayAdapter<MusicModel> {
         TextView album = listItemView.findViewById(R.id.album_name);
         ImageView art = listItemView.findViewById(R.id.album_art);
 
-        if(current.getmCover() != null){
-            Bitmap cover = BitmapFactory.decodeByteArray(current.getmCover(),0,current.getmCover().length);
-            art.setImageBitmap(cover);
+        assert current != null;
+        //setting Album art
+        if (current.getmCover() != null) {
+            Bitmap artwork = BitmapFactory.decodeStream(current.getmCover());
+            art.setImageBitmap(artwork);
+        }
+        else {
+            Glide.with(getContext()).load(R.drawable.ic_launcher_foreground).into(art);
         }
 
-        else {
-            art.setImageResource(R.color.colorPrimary);
-        }
+
         song.setText(current.getmSongName());
         artist.setText(current.getmArtist());
         album.setText(current.getmAlbum());
