@@ -72,9 +72,11 @@ public class MainActivity extends AppCompatActivity {
                 String song = current.getmSongName();
                 String album = current.getmAlbum();
                 String art = current.getmCover();
+                String path = current.getmID();
                 i.putExtra("S", song);
                 i.putExtra("A", album);
                 i.putExtra("Art", art);
+                i.putExtra("Path", path);
                 startActivity(i);
 
             }
@@ -142,15 +144,15 @@ public class MainActivity extends AppCompatActivity {
                 null, null, null);
 
         if (musicCursor != null && musicCursor.moveToFirst()) {
-            int id = musicCursor.getColumnIndex(MediaStore.Audio.Media._ID);
+            int fullpath = musicCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
             int title = musicCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
             int artist = musicCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int album = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
-            // getting album id here
+            // getting album fullpath here
             int album_id = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID);
 
             do {
-                long ID = musicCursor.getLong(id);
+                String Path = musicCursor.getString(fullpath);
                 long album__id = musicCursor.getInt(album_id);
                 //calling getCoverArtPath for Album art
                 String path = getCoverArtPath(album__id, getApplicationContext());
@@ -158,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 String artistName = musicCursor.getString(artist);
                 String albumName = musicCursor.getString(album);
                 // setting data to list
-                library.add(new MusicModel(ID, titleName, artistName, albumName, path));
+                library.add(new MusicModel(Path, titleName, artistName, albumName, path));
             } while (musicCursor.moveToNext());
 
         }

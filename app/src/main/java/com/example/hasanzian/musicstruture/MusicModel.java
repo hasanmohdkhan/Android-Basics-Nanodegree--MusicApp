@@ -5,13 +5,13 @@ package com.example.hasanzian.musicstruture;
  */
 
 public class MusicModel {
-    private long mID;
+    private String mID;
     private String mSongName;
     private String mArtist;
     private String mAlbum;
     private String mCover;
 
-    public MusicModel(long mID, String mSongName, String mArtist, String mAlbum, String mCover) {
+    public MusicModel(String mID, String mSongName, String mArtist, String mAlbum, String mCover) {
         this.mID = mID;
         this.mSongName = mSongName;
         this.mArtist = mArtist;
@@ -19,18 +19,7 @@ public class MusicModel {
         this.mCover = mCover;
     }
 
-    public MusicModel(String mSongName, String mArtist, String mAlbum, String mCover) {
-        this.mSongName = mSongName;
-        this.mArtist = mArtist;
-        this.mAlbum = mAlbum;
-        this.mCover = mCover;
-    }
 
-    public MusicModel(String mSongName, String mArtist, String mAlbum) {
-        this.mSongName = mSongName;
-        this.mArtist = mArtist;
-        this.mAlbum = mAlbum;
-    }
 
     public String getmSongName() {
         return mSongName;
@@ -48,7 +37,7 @@ public class MusicModel {
         return mCover;
     }
 
-    public long getmID() {
+    public String getmID() {
         return mID;
     }
 }

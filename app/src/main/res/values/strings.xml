@@ -2,4 +2,7 @@
     <string name="app_name">Music Structure</string>
     <string name="album_art_contain_description_str">Album art</string>
     <string name="now_playing_activity_str">Now Playing</string>
+    <string name="rewind_button_str">rewind button</string>
+    <string name="play_button_str">Play button</string>
+    <string name="fast_farword_str">fast farword</string>
 </resources>
