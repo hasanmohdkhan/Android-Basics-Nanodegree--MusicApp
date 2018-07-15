@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 public class NowPlayingActivity extends AppCompatActivity {
 
     TextView songNowplaying, albumNP;
@@ -32,10 +34,10 @@ public class NowPlayingActivity extends AppCompatActivity {
         albumNP.setText(artist);
 
         if (art_cover != null) {
-            Bitmap cover = BitmapFactory.decodeFile(art_cover);
-            coverNP.setImageBitmap(cover);
+            Bitmap artwork = BitmapFactory.decodeFile(art_cover);
+            Glide.with(getApplicationContext()).load(artwork).into(coverNP);
         } else {
-            coverNP.setImageResource(R.color.colorAccent);
+            Glide.with(getApplicationContext()).load(R.drawable.ic_launcher_background).into(coverNP);
         }
 
 

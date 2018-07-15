@@ -1,7 +1,5 @@
 package com.example.hasanzian.musicstruture;
 
-import java.io.InputStream;
-
 /**
  * Created by hasanZian on 12-07-2018.
  */
@@ -11,9 +9,9 @@ public class MusicModel {
     private String mSongName;
     private String mArtist;
     private String mAlbum;
-    private InputStream mCover;
+    private String mCover;
 
-    public MusicModel(long mID, String mSongName, String mArtist, String mAlbum, InputStream mCover) {
+    public MusicModel(long mID, String mSongName, String mArtist, String mAlbum, String mCover) {
         this.mID = mID;
         this.mSongName = mSongName;
         this.mArtist = mArtist;
@@ -21,7 +19,7 @@ public class MusicModel {
         this.mCover = mCover;
     }
 
-    public MusicModel(String mSongName, String mArtist, String mAlbum, InputStream mCover) {
+    public MusicModel(String mSongName, String mArtist, String mAlbum, String mCover) {
         this.mSongName = mSongName;
         this.mArtist = mArtist;
         this.mAlbum = mAlbum;
@@ -46,7 +44,7 @@ public class MusicModel {
         return mAlbum;
     }
 
-    public InputStream getmCover() {
+    public String getmCover() {
         return mCover;
     }
 

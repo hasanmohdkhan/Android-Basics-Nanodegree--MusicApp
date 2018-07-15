@@ -44,8 +44,9 @@ public class Adaptor extends ArrayAdapter<MusicModel> {
         assert current != null;
         //setting Album art
         if (current.getmCover() != null) {
-            Bitmap artwork = BitmapFactory.decodeStream(current.getmCover());
-            art.setImageBitmap(artwork);
+            Bitmap artwork = BitmapFactory.decodeFile(current.getmCover());
+            //  art.setImageBitmap(artwork);
+            Glide.with(getContext()).load(artwork).into(art);
         }
         else {
             Glide.with(getContext()).load(R.drawable.ic_launcher_foreground).into(art);
