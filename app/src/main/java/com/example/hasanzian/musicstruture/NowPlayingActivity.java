@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -17,7 +16,7 @@ import java.io.IOException;
 
 public class NowPlayingActivity extends AppCompatActivity {
 
-    TextView songNowplaying, albumNP;
+    TextView songNowPlaying, albumNP;
     ImageView coverNP;
     MediaPlayer mp;
     SeekBar seekBar;
@@ -29,7 +28,7 @@ public class NowPlayingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_now_playing);
-        songNowplaying = findViewById(R.id.song_name_n_p);
+        songNowPlaying = findViewById(R.id.song_name_n_p);
         albumNP = findViewById(R.id.album_n_p);
         coverNP = findViewById(R.id.cover_now_playing);
         seekBar = findViewById(R.id.seek_bar);
@@ -48,7 +47,7 @@ public class NowPlayingActivity extends AppCompatActivity {
         art_cover = songData.getString("Art");
         path = songData.getString("Path");
 
-        songNowplaying.setText(song);
+        songNowPlaying.setText(song);
         albumNP.setText(artist);
 
         if (art_cover != null) {
@@ -62,7 +61,6 @@ public class NowPlayingActivity extends AppCompatActivity {
         try {
             mp.setDataSource(path);
             mp.prepare();
-            //mp.start();
             seekBar.setMax(mp.getDuration());
             myThread t = new myThread();
             t.start();
@@ -74,14 +72,15 @@ public class NowPlayingActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (isPlaying) {
                     mp.pause();
                     isPlaying = false;
-                    play.setImageResource(R.drawable.pause_circle);
+                    play.setImageResource(R.drawable.play_circle);
                 } else {
                     mp.start();
                     isPlaying = true;
-                    play.setImageResource(R.drawable.play_circle);
+                    play.setImageResource(R.drawable.pause_circle);
                 }
             }
         });
@@ -100,15 +99,6 @@ public class NowPlayingActivity extends AppCompatActivity {
                     mp.seekTo(mp.getCurrentPosition() - 30000);
             }
         });
-
-
-        if (mp.isPlaying()) {
-            Toast.makeText(this, "Is Playing", Toast.LENGTH_SHORT).show();
-            mp.release();
-        } else {
-            Toast.makeText(this, "Else block", Toast.LENGTH_SHORT).show();
-
-        }
 
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

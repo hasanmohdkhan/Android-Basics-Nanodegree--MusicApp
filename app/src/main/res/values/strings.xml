@@ -5,4 +5,5 @@
     <string name="rewind_button_str">rewind button</string>
     <string name="play_button_str">Play button</string>
     <string name="fast_farword_str">fast farword</string>
+    <string name="transition_album_art_name">album</string>
 </resources>

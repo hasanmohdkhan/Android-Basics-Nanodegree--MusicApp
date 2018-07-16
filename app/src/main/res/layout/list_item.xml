@@ -7,45 +7,24 @@
 
     <ImageView
         android:id="@+id/album_art"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        style="@style/ListViewAlbumArtStyle"
         android:contentDescription="@string/album_art_contain_description_str"
-        android:src="@color/colorAccent" />
-
-
+        android:transitionName="album"
+        tools:src="@color/colorAccent" />
 
     <TextView
         android:id="@+id/song_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_toEndOf="@id/album_art"
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        style="@style/ListViewMainHeadingStyle"
+        android:transitionName="track"
         tools:text="Shape of You"/>
     <TextView
         android:id="@+id/artist_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/song_name"
-        android:layout_marginBottom="4dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_toEndOf="@id/album_art"
+        style="@style/ListViewArtistTextView"
+        android:transitionName="artist"
         tools:text="Ed shareen"/>
 
     <TextView
         android:id="@+id/album_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/artist_name"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@id/album_art"
+        style="@style/ListviewAlbumNameTextView"
         tools:text="Divide"/>
 </RelativeLayout>

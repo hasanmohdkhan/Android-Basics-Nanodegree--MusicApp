@@ -12,9 +12,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         library = new ArrayList<MusicModel>();
         listView = findViewById(R.id.list);
+        final ImageView imageView = findViewById(R.id.album_art);
 
         permissionChack();
 
@@ -77,11 +81,24 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("A", album);
                 i.putExtra("Art", art);
                 i.putExtra("Path", path);
-                startActivity(i);
+
+
+                Pair<View, String>[] pairs = new Pair[3];
+                pairs[0] = new Pair<View, String>(findViewById(R.id.album_art), "album");
+                pairs[1] = new Pair<View, String>(findViewById(R.id.song_name), "song");
+                pairs[2] = new Pair<View, String>(findViewById(R.id.artist_name), "artist");
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, pairs);
+                //  startTransition(view, adaptor.getItem(position));
+
+                startActivity(i, options.toBundle());
 
             }
         });
 
+
+    }
+
+    private void startTransition(View view, MusicModel item) {
 
     }
 

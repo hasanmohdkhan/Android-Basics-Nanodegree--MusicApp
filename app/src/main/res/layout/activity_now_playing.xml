@@ -8,70 +8,54 @@
 
     <ImageView
         android:id="@+id/cover_now_playing"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp"
+        style="@style/NpAlbumStyle"
         android:contentDescription="@string/album_art_contain_description_str"
-        tools:src="@color/colorAccent"/>
+        android:transitionName="@string/transition_album_art_name"
+        tools:src="@color/colorAccent" />
 
 
     <TextView
         android:id="@+id/song_name_n_p"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        style="@style/NpSongStyle"
+        android:transitionName="track"
         tools:text="Shape of you" />
+
     <TextView
         android:id="@+id/album_n_p"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        tools:text="Shape of you" />
+        style="@style/NpSongStyle"
+        android:transitionName="artist"
+        tools:text="Divide" />
 
     <SeekBar
         android:id="@+id/seek_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        style="@style/NpSeekBar"
+        android:layout_marginStart="@dimen/seekbar_margin_start_end" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        style="@style/MediaControllerLinearLayout"
         android:weightSum="3">
 
         <ImageView
             android:id="@+id/rewind"
-            android:layout_width="20dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="25dp"
+            style="@style/RewindFastFarwrdStyle"
             android:layout_weight="1"
-            android:background="@drawable/rewind"
-            android:contentDescription="@string/rewind_button_str" />
+            android:contentDescription="@string/rewind_button_str"
+            android:src="@drawable/rewind" />
 
         <ImageView
             android:id="@+id/play"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            style="@style/PlayButton"
             android:layout_weight="1"
-            android:adjustViewBounds="false"
             android:contentDescription="@string/play_button_str"
-            android:src="@drawable/pause_circle" />
+            android:src="@drawable/play_circle" />
 
         <ImageView
             android:id="@+id/fast_forward"
-            android:layout_width="20dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="25dp"
+            style="@style/RewindFastFarwrdStyle"
             android:layout_weight="1"
-            android:background="@drawable/fast_forward"
-            android:contentDescription="@string/fast_farword_str" />
+            android:contentDescription="@string/fast_farword_str"
+            android:src="@drawable/fast_forward" />
+
     </LinearLayout>
 
 

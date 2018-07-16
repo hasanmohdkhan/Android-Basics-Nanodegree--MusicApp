@@ -6,6 +6,98 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
+    <style name="NpAlbumStyle">
+        <item name="android:layout_width">@dimen/np_album_art_width</item>
+        <item name="android:layout_height">@dimen/np_album_art_height</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_margin">@dimen/np_album_art_margin</item>
+    </style>
+
+    <style name="NpSongStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/song_name_text_size_20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/np_album_art_margin</item>
+    </style>
+
+    <style name="NpSeekBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/np_album_art_margin</item>
+        <item name="android:layout_marginStart">@dimen/seekbar_margin_start_end</item>
+        <item name="android:layout_marginEnd">@dimen/seekbar_margin_start_end</item>
+
+    </style>
+
+    <style name="MediaControllerLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">@dimen/np_album_art_margin</item>
+        <item name="android:layout_marginStart">@dimen/np_album_art_margin</item>
+        <item name="android:layout_marginEnd">@dimen/np_album_art_margin</item>
+
+
+    </style>
+
+    <style name="RewindFastFarwrdStyle">
+        <item name="android:layout_width">@dimen/rewind_fast_farwrd_width</item>
+        <item name="android:layout_height">@dimen/rewind_fast_farwrd_height</item>
+        <item name="android:layout_marginTop">@dimen/rewind_fast_farwrd_marign_top_25dp</item>
+
+    </style>
+
+    <style name="PlayButton">
+        <item name="android:layout_width">@dimen/play_button_100dp_width</item>
+        <item name="android:layout_height">@dimen/play_button_100dp_height</item>
+    </style>
+
+    <style name="ListViewAlbumArtStyle">
+        <item name="android:layout_width">@dimen/list_album_art_width_100dp</item>
+        <item name="android:layout_height">@dimen/list_album_art_height_100dp</item>
+        <item name="android:layout_marginTop">@dimen/dimen_16dp</item>
+        <item name="android:layout_marginBottom">@dimen/dimen_16dp</item>
+        <item name="android:layout_marginStart">@dimen/dimen_16dp</item>
+
+    </style>
+
+    <style name="ListViewMainHeadingStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_marginTop">@dimen/dimen_16dp</item>
+        <item name="android:layout_marginStart">@dimen/dimen_16dp</item>
+        <item name="android:layout_toEndOf">@id/album_art</item>
+        <item name="android:textColor">@color/colorMainHeadingList</item>
+        <item name="android:textSize">@dimen/song_name_text_size_20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ListViewArtistTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_marginTop">@dimen/artist_margin_4dp</item>
+        <item name="android:layout_marginBottom">@dimen/artist_margin_4dp</item>
+        <item name="android:layout_marginStart">@dimen/dimen_16dp</item>
+        <item name="android:layout_below">@id/song_name</item>
+        <item name="android:layout_toEndOf">@id/album_art</item>
+    </style>
+
+    <style name="ListviewAlbumNameTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_below">@id/artist_name</item>
+        <item name="android:layout_toEndOf">@id/album_art</item>
+        <item name="android:layout_marginBottom">@dimen/artist_margin_4dp</item>
+        <item name="android:layout_marginStart">@dimen/dimen_16dp</item>
+    </style>
 </resources>
