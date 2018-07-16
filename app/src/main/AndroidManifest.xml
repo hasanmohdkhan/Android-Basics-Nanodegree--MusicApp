@@ -25,9 +25,8 @@
         <activity
             android:name=".NowPlayingActivity"
             android:label="@string/now_playing_activity_str"
-            android:parentActivityName=".MainActivity"></activity>
-
-        <!--<service android:name="com.example.hasanzian.musicstruture." />-->
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
