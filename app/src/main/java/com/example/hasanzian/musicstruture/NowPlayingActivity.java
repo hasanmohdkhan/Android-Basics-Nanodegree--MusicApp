@@ -16,25 +16,22 @@ import java.io.IOException;
 
 public class NowPlayingActivity extends AppCompatActivity {
 
-    TextView songNowPlaying, albumNP;
-    ImageView coverNP;
-    MediaPlayer mp;
-    SeekBar seekBar;
-    int seek_value;
-    ImageView play, rewind, fast_forward;
-    String song, artist, art_cover, path;
-    Boolean isPlaying = false;
+    private MediaPlayer mp;
+    private SeekBar seekBar;
+    private int seek_value;
+    private ImageView play;
+    private Boolean isPlaying = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_now_playing);
-        songNowPlaying = findViewById(R.id.song_name_n_p);
-        albumNP = findViewById(R.id.album_n_p);
-        coverNP = findViewById(R.id.cover_now_playing);
+        TextView songNowPlaying = findViewById(R.id.song_name_n_p);
+        TextView albumNP = findViewById(R.id.album_n_p);
+        ImageView coverNP = findViewById(R.id.cover_now_playing);
         seekBar = findViewById(R.id.seek_bar);
         play = findViewById(R.id.play);
-        rewind = findViewById(R.id.rewind);
-        fast_forward = findViewById(R.id.fast_forward);
+        ImageView rewind = findViewById(R.id.rewind);
+        ImageView fast_forward = findViewById(R.id.fast_forward);
         mp = new MediaPlayer();
 
         //Extract Bundle here
@@ -42,11 +39,10 @@ public class NowPlayingActivity extends AppCompatActivity {
         if (songData == null) {
             return;
         }
-        song = songData.getString("S");
-        artist = songData.getString("A");
-        art_cover = songData.getString("Art");
-        path = songData.getString("Path");
-
+        String song = songData.getString(getString(R.string.song_key));
+        String artist = songData.getString(getString(R.string.artist_key));
+        String art_cover = songData.getString(getString(R.string.album_art_key));
+        String path = songData.getString(getString(R.string.location_of_song_key));
         songNowPlaying.setText(song);
         albumNP.setText(artist);
 
@@ -54,7 +50,7 @@ public class NowPlayingActivity extends AppCompatActivity {
             Bitmap artwork = BitmapFactory.decodeFile(art_cover);
             Glide.with(getApplicationContext()).load(artwork).into(coverNP);
         } else {
-            Glide.with(getApplicationContext()).load(R.drawable.ic_launcher_background).into(coverNP);
+            Glide.with(getApplicationContext()).load(R.drawable.music).into(coverNP);
         }
 
         // Prepare media player
@@ -68,11 +64,9 @@ public class NowPlayingActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (isPlaying) {
                     mp.pause();
                     isPlaying = false;

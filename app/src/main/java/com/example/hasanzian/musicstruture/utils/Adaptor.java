@@ -1,4 +1,4 @@
-package com.example.hasanzian.musicstruture;
+package com.example.hasanzian.musicstruture.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,11 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.hasanzian.musicstruture.R;
+import com.example.hasanzian.musicstruture.model.MusicModel;
 
 import java.util.List;
 
 /**
- * Created by hasanZian on 12-07-2018.
+ * Adaptor class for setting objects and views
  */
 
 public class Adaptor extends ArrayAdapter<MusicModel> {
@@ -34,29 +36,28 @@ public class Adaptor extends ArrayAdapter<MusicModel> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
-
-        MusicModel current = getItem(position);
+        // initialing views here
         TextView song = listItemView.findViewById(R.id.song_name);
         TextView artist = listItemView.findViewById(R.id.artist_name);
         TextView album = listItemView.findViewById(R.id.album_name);
         ImageView art = listItemView.findViewById(R.id.album_art);
 
+        // getting current position of objects in list and setting respectively
+        MusicModel current = getItem(position);
+
         assert current != null;
         //setting Album art
-        if (current.getmCover() != null) {
-            Bitmap artwork = BitmapFactory.decodeFile(current.getmCover());
-            //  art.setImageBitmap(artwork);
+        if (current.getCover() != null) {
+            Bitmap artwork = BitmapFactory.decodeFile(current.getCover());
             Glide.with(getContext()).load(artwork).into(art);
+        } else {
+            Glide.with(getContext()).load(R.drawable.music).into(art);
         }
-        else {
-            Glide.with(getContext()).load(R.drawable.ic_launcher_foreground).into(art);
-        }
-
-
-        song.setText(current.getmSongName());
-        artist.setText(current.getmArtist());
-        album.setText(current.getmAlbum());
-
+        //setting song name,artist name,album name
+        song.setText(current.getSongName());
+        artist.setText(current.getArtist());
+        album.setText(current.getAlbum());
+        // returning list
         return listItemView;
     }
 }

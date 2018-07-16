@@ -9,22 +9,22 @@
         android:id="@+id/album_art"
         style="@style/ListViewAlbumArtStyle"
         android:contentDescription="@string/album_art_contain_description_str"
-        android:transitionName="album"
+        android:transitionName="@string/transition_album_name"
         tools:src="@color/colorAccent" />
 
     <TextView
         android:id="@+id/song_name"
         style="@style/ListViewMainHeadingStyle"
-        android:transitionName="track"
+        android:transitionName="@string/transition_song_name"
         tools:text="Shape of You"/>
     <TextView
         android:id="@+id/artist_name"
         style="@style/ListViewArtistTextView"
-        android:transitionName="artist"
+        android:transitionName="@string/transition_artist_name"
         tools:text="Ed shareen"/>
 
     <TextView
         android:id="@+id/album_name"
-        style="@style/ListviewAlbumNameTextView"
+        style="@style/ListViewAlbumNameTextView"
         tools:text="Divide"/>
 </RelativeLayout>

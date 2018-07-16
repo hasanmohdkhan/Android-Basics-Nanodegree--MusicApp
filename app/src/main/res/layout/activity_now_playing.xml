@@ -13,17 +13,16 @@
         android:transitionName="@string/transition_album_art_name"
         tools:src="@color/colorAccent" />
 
-
     <TextView
         android:id="@+id/song_name_n_p"
         style="@style/NpSongStyle"
-        android:transitionName="track"
+        android:transitionName="@string/transition_song_name"
         tools:text="Shape of you" />
 
     <TextView
         android:id="@+id/album_n_p"
         style="@style/NpSongStyle"
-        android:transitionName="artist"
+        android:transitionName="@string/transition_album_name"
         tools:text="Divide" />
 
     <SeekBar
@@ -57,6 +56,5 @@
             android:src="@drawable/fast_forward" />
 
     </LinearLayout>
-
 
 </LinearLayout>

@@ -17,9 +17,11 @@ import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.hasanzian.musicstruture.model.MusicModel;
+import com.example.hasanzian.musicstruture.utils.Adaptor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,9 +29,9 @@ import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<MusicModel> library;
-    Adaptor adaptor;
-    ListView listView;
+    private ArrayList<MusicModel> library;
+    private Adaptor adaptor;
+    private ListView listView;
 
     private static String getCoverArtPath(long albumId, Context context) {
 
@@ -56,40 +58,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         library = new ArrayList<MusicModel>();
         listView = findViewById(R.id.list);
-        final ImageView imageView = findViewById(R.id.album_art);
-
-        permissionChack();
-
+        //checking for permission if not granted then show a toast
+        permissionCheck();
+        //if permission is granted then add music to list
         if (isPermissionGranted()) {
             addMusic();
         }
-
-
+        //listener for list item
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), NowPlayingActivity.class);
                 MusicModel current = adaptor.getItem(position);
-                String song = current.getmSongName();
-                String album = current.getmAlbum();
-                String art = current.getmCover();
-                String path = current.getmID();
-                i.putExtra("S", song);
-                i.putExtra("A", album);
-                i.putExtra("Art", art);
-                i.putExtra("Path", path);
+                assert current != null;
+                // getting current position and setting respective object
+                String song = current.getSongName();
+                String artist = current.getArtist();
+                String art = current.getCover();
+                String path = current.getID();
 
+                //transferring current click song,album art,
+                // artist name to Now playing activity
+                i.putExtra(getString(R.string.song_key), song);
+                i.putExtra(getString(R.string.artist_key), artist);
+                i.putExtra(getString(R.string.album_art_key), art);
+                i.putExtra(getString(R.string.location_of_song_key), path);
 
                 Pair<View, String>[] pairs = new Pair[3];
-                pairs[0] = new Pair<View, String>(findViewById(R.id.album_art), "album");
-                pairs[1] = new Pair<View, String>(findViewById(R.id.song_name), "song");
-                pairs[2] = new Pair<View, String>(findViewById(R.id.artist_name), "artist");
+                pairs[0] = new Pair<View, String>(findViewById(R.id.album_art), getString(R.string.transition_album_name));
+                pairs[1] = new Pair<View, String>(findViewById(R.id.song_name), getString(R.string.transition_song_name));
+                pairs[2] = new Pair<View, String>(findViewById(R.id.artist_name), getString(R.string.transition_artist_name));
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, pairs);
-                //  startTransition(view, adaptor.getItem(position));
-
                 startActivity(i, options.toBundle());
 
             }
@@ -98,17 +99,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void startTransition(View view, MusicModel item) {
-
-    }
-
-    private void permissionChack() {
+    private void permissionCheck() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(getApplicationContext(), "Permission Required", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.permission_required_str, Toast.LENGTH_SHORT).show();
             return;
         }
-        //addMusic();
     }
 
     @Override
@@ -117,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
             case 1: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(getApplicationContext(), "Granted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.permission_granted_str, Toast.LENGTH_SHORT).show();
                     addMusic();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Deny", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.permission_deny_str, Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
@@ -146,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         getSongList();
         Collections.sort(library, new Comparator<MusicModel>() {
             public int compare(MusicModel a, MusicModel b) {
-                return a.getmSongName().compareTo(b.getmSongName());
+                return a.getSongName().compareTo(b.getSongName());
             }
         });
         adaptor = new Adaptor(getApplicationContext(), library);
@@ -165,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
             int title = musicCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
             int artist = musicCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int album = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
-            // getting album fullpath here
+            // getting album full path here
             int album_id = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID);
 
             do {

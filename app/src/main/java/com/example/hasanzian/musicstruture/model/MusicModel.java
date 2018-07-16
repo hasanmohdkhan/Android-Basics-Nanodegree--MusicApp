@@ -1,7 +1,7 @@
-package com.example.hasanzian.musicstruture;
+package com.example.hasanzian.musicstruture.model;
 
 /**
- * Created by hasanZian on 12-07-2018.
+ * Model class for data structure
  */
 
 public class MusicModel {
@@ -19,25 +19,23 @@ public class MusicModel {
         this.mCover = mCover;
     }
 
-
-
-    public String getmSongName() {
+    public String getSongName() {
         return mSongName;
     }
 
-    public String getmArtist() {
+    public String getArtist() {
         return mArtist;
     }
 
-    public String getmAlbum() {
+    public String getAlbum() {
         return mAlbum;
     }
 
-    public String getmCover() {
+    public String getCover() {
         return mCover;
     }
 
-    public String getmID() {
+    public String getID() {
         return mID;
     }
 }
