@@ -26,10 +26,11 @@ import com.example.hasanzian.musicstruture.utils.Adaptor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<MusicModel> library;
+    private List<MusicModel> library;
     private Adaptor adaptor;
     private ListView listView;
 
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), NowPlayingActivity.class);
+                Intent nowPlayingIntent = new Intent(getApplicationContext(), NowPlayingActivity.class);
                 MusicModel current = adaptor.getItem(position);
                 assert current != null;
                 // getting current position and setting respective object
@@ -81,17 +82,17 @@ public class MainActivity extends AppCompatActivity {
 
                 //transferring current click song,album art,
                 // artist name to Now playing activity
-                i.putExtra(getString(R.string.song_key), song);
-                i.putExtra(getString(R.string.artist_key), artist);
-                i.putExtra(getString(R.string.album_art_key), art);
-                i.putExtra(getString(R.string.location_of_song_key), path);
+                nowPlayingIntent.putExtra(getString(R.string.song_key), song);
+                nowPlayingIntent.putExtra(getString(R.string.artist_key), artist);
+                nowPlayingIntent.putExtra(getString(R.string.album_art_key), art);
+                nowPlayingIntent.putExtra(getString(R.string.location_of_song_key), path);
 
                 Pair<View, String>[] pairs = new Pair[3];
                 pairs[0] = new Pair<View, String>(findViewById(R.id.album_art), getString(R.string.transition_album_name));
                 pairs[1] = new Pair<View, String>(findViewById(R.id.song_name), getString(R.string.transition_song_name));
                 pairs[2] = new Pair<View, String>(findViewById(R.id.artist_name), getString(R.string.transition_artist_name));
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, pairs);
-                startActivity(i, options.toBundle());
+                startActivity(nowPlayingIntent, options.toBundle());
 
             }
         });
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean isPermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
                 return true;
