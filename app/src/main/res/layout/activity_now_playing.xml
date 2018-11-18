@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.hasanzian.musicstruture.NowPlayingActivity">
+
+    <ImageView
+        android:id="@+id/cover_now_playing"
+        style="@style/NpAlbumStyle"
+        android:contentDescription="@string/album_art_contain_description_str"
+        android:transitionName="@string/transition_album_art_name"
+        tools:src="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/song_name_n_p"
+        style="@style/NpSongStyle"
+        android:transitionName="@string/transition_song_name"
+        tools:text="Shape of you" />
+
+    <TextView
+        android:id="@+id/album_n_p"
+        style="@style/NpSongStyle"
+        android:transitionName="@string/transition_album_name"
+        tools:text="Divide" />
+
+    <SeekBar
+        android:id="@+id/seek_bar"
+        style="@style/NpSeekBar"
+        android:layout_marginStart="@dimen/seekbar_margin_start_end" />
+
+    <LinearLayout
+        style="@style/MediaControllerLinearLayout"
+        android:weightSum="3">
+
+        <ImageView
+            android:id="@+id/rewind"
+            style="@style/RewindFastFarwrdStyle"
+            android:layout_weight="1"
+            android:contentDescription="@string/rewind_button_str"
+            android:src="@drawable/rewind" />
+
+        <ImageView
+            android:id="@+id/play"
+            style="@style/PlayButton"
+            android:layout_weight="1"
+            android:contentDescription="@string/play_button_str"
+            android:src="@drawable/play_circle" />
+
+        <ImageView
+            android:id="@+id/fast_forward"
+            style="@style/RewindFastFarwrdStyle"
+            android:layout_weight="1"
+            android:contentDescription="@string/fast_farword_str"
+            android:src="@drawable/fast_forward" />
+
+    </LinearLayout>
+
+</LinearLayout>

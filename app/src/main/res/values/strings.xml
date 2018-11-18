@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Music Structure</string>
+    <string name="album_art_contain_description_str">Album art</string>
+    <string name="now_playing_activity_str">Now Playing</string>
+    <string name="rewind_button_str">rewind button</string>
+    <string name="play_button_str">Play button</string>
+    <string name="fast_farword_str">fast farword</string>
+    <string name="permission_required_str">Permission Required !</string>
+    <string name="song_key">S</string>
+    <string name="artist_key">A</string>
+    <string name="album_art_key">Art</string>
+    <string name="location_of_song_key">Path</string>
+    <string name="transition_album_art_name">album</string>
+    <string name="transition_album_name">album</string>
+    <string name="transition_song_name">track</string>
+    <string name="transition_artist_name">artist</string>
+    <string name="permission_granted_str">Permission Granted</string>
+    <string name="permission_deny_str">Permission Deny</string>
+</resources>

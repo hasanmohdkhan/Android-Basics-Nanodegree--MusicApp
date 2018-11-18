@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/album_art"
+        style="@style/ListViewAlbumArtStyle"
+        android:contentDescription="@string/album_art_contain_description_str"
+        android:transitionName="@string/transition_album_name"
+        tools:src="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/song_name"
+        style="@style/ListViewMainHeadingStyle"
+        android:transitionName="@string/transition_song_name"
+        tools:text="Shape of You" />
+
+    <TextView
+        android:id="@+id/artist_name"
+        style="@style/ListViewArtistTextView"
+        android:transitionName="@string/transition_artist_name"
+        tools:text="Ed shareen" />
+
+    <TextView
+        android:id="@+id/album_name"
+        style="@style/ListViewAlbumNameTextView"
+        tools:text="Divide" />
+</RelativeLayout>
