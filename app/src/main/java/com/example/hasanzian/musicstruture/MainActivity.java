@@ -15,24 +15,31 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.hasanzian.musicstruture.model.MusicModel;
-import com.example.hasanzian.musicstruture.utils.Adaptor;
+import com.example.hasanzian.musicstruture.utils.MusicAdaptor;
+import com.example.hasanzian.musicstruture.utils.RecyclerTouchListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
     private List<MusicModel> library;
-    private Adaptor adaptor;
-    private ListView listView;
+    @BindView(R.id.list)
+    RecyclerView mRecyclerView;
+    private MusicAdaptor mAdaptor;
+
 
     private static String getCoverArtPath(long albumId, Context context) {
 
@@ -59,8 +66,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        library = new ArrayList<MusicModel>();
-        listView = findViewById(R.id.list);
+        ButterKnife.bind(this);
+        library = new ArrayList<>();
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mAdaptor = new MusicAdaptor(library);
+        mRecyclerView.setAdapter(mAdaptor);
+
+
         //checking for permission if not granted then show a toast
         permissionCheck();
         //if permission is granted then add music to list
@@ -68,34 +83,41 @@ public class MainActivity extends AppCompatActivity {
             addMusic();
         }
         //listener for list item
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent nowPlayingIntent = new Intent(getApplicationContext(), NowPlayingActivity.class);
-                MusicModel current = adaptor.getItem(position);
-                assert current != null;
-                // getting current position and setting respective object
-                String song = current.getSongName();
-                String artist = current.getArtist();
-                String art = current.getCover();
-                String path = current.getID();
+        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView,
+                new RecyclerTouchListener.ClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
 
-                //transferring current click song,album art,
-                // artist name to Now playing activity
-                nowPlayingIntent.putExtra(getString(R.string.song_key), song);
-                nowPlayingIntent.putExtra(getString(R.string.artist_key), artist);
-                nowPlayingIntent.putExtra(getString(R.string.album_art_key), art);
-                nowPlayingIntent.putExtra(getString(R.string.location_of_song_key), path);
+                        Intent nowPlayingIntent = new Intent(getApplicationContext(), NowPlayingActivity.class);
+                        MusicModel current = library.get(position);
+                        assert current != null;
+                        // getting current position and setting respective object
+                        String song = current.getSongName();
+                        String artist = current.getArtist();
+                        String art = current.getCover();
+                        String path = current.getID();
 
-                Pair<View, String>[] pairs = new Pair[3];
-                pairs[0] = new Pair<View, String>(findViewById(R.id.album_art), getString(R.string.transition_album_name));
-                pairs[1] = new Pair<View, String>(findViewById(R.id.song_name), getString(R.string.transition_song_name));
-                pairs[2] = new Pair<View, String>(findViewById(R.id.artist_name), getString(R.string.transition_artist_name));
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, pairs);
-                startActivity(nowPlayingIntent, options.toBundle());
+                        //transferring current click song,album art,
+                        // artist name to Now playing activity
+                        nowPlayingIntent.putExtra(getString(R.string.song_key), song);
+                        nowPlayingIntent.putExtra(getString(R.string.artist_key), artist);
+                        nowPlayingIntent.putExtra(getString(R.string.album_art_key), art);
+                        nowPlayingIntent.putExtra(getString(R.string.location_of_song_key), path);
 
-            }
-        });
+                        Pair<View, String>[] pairs = new Pair[3];
+                        pairs[0] = new Pair<View, String>(findViewById(R.id.album_art), getString(R.string.transition_album_name));
+                        pairs[1] = new Pair<View, String>(findViewById(R.id.song_name), getString(R.string.transition_song_name));
+                        pairs[2] = new Pair<View, String>(findViewById(R.id.artist_name), getString(R.string.transition_artist_name));
+                        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, pairs);
+                        startActivity(nowPlayingIntent, options.toBundle());
+
+                    }
+
+                    @Override
+                    public void onLongClick(View view, int position) {
+
+                    }
+                }));
 
 
     }
@@ -146,8 +168,9 @@ public class MainActivity extends AppCompatActivity {
                 return a.getSongName().compareTo(b.getSongName());
             }
         });
-        adaptor = new Adaptor(getApplicationContext(), library);
-        listView.setAdapter(adaptor);
+
+        mAdaptor = new MusicAdaptor(library);
+        mRecyclerView.setAdapter(mAdaptor);
     }
 
     public void getSongList() {
